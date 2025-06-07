@@ -2,147 +2,212 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Página de Vendas</title>
+  <title>Encantos da Lis</title>
   <style>
-    body { background: #FF69B4; margin: 0; font-family: Arial, sans-serif; }
-    .page-border { border: 8px solid #FF1493; padding: 20px; max-width: 960px; margin: auto; }
-    .sobre { background: #C71585; color: #fff; text-align: center; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
-    .sobre img { width: 150px; height: auto; border-radius: 50%; display: block; margin: auto 0 15px; }
-    .produtos { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-    .produto { background: #fff; width: 200px; padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    .produto img { width: 100%; height: auto; border-radius: 4px; }
-    .info { margin: 10px 0; font-size: 0.9em; color: #333; }
-    .buy-button { background: #FF1493; color: #fff; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 1em; }
-    .buy-button:hover { background: #C71585; }
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
-    .modal-content { background: #fff; border-radius: 8px; width: 90%; max-width: 400px; padding: 20px; }
-    .tabs { display: flex; margin-bottom: 15px; }
-    .tabs button { flex: 1; padding: 8px; border: none; background: #eee; cursor: pointer; }
-    .tabs button.active { background: #C71585; color: #fff; }
+    body {
+      margin: 0; padding: 0;
+      background: #FF69B4; /* HotPink */
+    }
+    .page-border {
+      border: 10px solid #FF1493; /* DeepPink */
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+    }
+    .about {
+      background: #C71585; /* MediumVioletRed */
+      padding: 20px; margin-bottom: 30px;
+      text-align: center;
+    }
+    .about img {
+      width: 150px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 10px;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 20px;
+    }
+    .product {
+      background: #fff;
+      padding: 10px;
+      text-align: center;
+      border: 2px solid #C71585;
+    }
+    .product img {
+      max-width: 100%;
+      height: auto;
+    }
+    .buy-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: #FF1493;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .modal {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6);
+      justify-content: center; align-items: center;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px; border-radius: 8px;
+      width: 90%; max-width: 400px;
+    }
+    .tabs { display: flex; margin-bottom: 10px; }
+    .tab-btn { flex:1; padding: 8px; cursor: pointer; background:#eee; text-align:center; }
+    .tab-btn.active { background: #C71585; color: #fff; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    .tab-content img { display: block; margin: 10px auto; width: 200px; height: 200px; }
-    .tab-content label { display: block; margin: 8px 0 4px; font-weight: bold; }
-    .tab-content input, .tab-content textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
-    .tab-content textarea { resize: vertical; }
-    .submit-btn { margin-top: 15px; width: 100%; padding: 10px; background: #28a745; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
-    .submit-btn:hover { background: #218838; }
-    .close-btn { margin-top: 10px; text-align: center; color: #FF1493; cursor: pointer; }
+    .order-form label { display:block; margin-top:10px; }
+    .order-form input, .order-form textarea { width:100%; padding:6px; }
+    #qrImage { margin-top:10px; max-width:100%; }
   </style>
 </head>
 <body>
+
   <div class="page-border">
-    <div class="sobre">
+
+    <div class="about">
       <img src="eliza.jpg" alt="Eliza Gabriela">
-      <h2>Eliza Gabriela</h2>
-      <h3>Laceira</h3>
-      <p>Sou empreendedora de laços há 1 ano, comecei do nada para entregar tudo para as mamães que amam deixar sua princesa ainda mais linda.</p>
-      <p>Tenho 25 anos e sou mãe do João Pedro e da Anna Lis.</p>
-      <p>Comecei com minha princesa Lis para realizar o sonho de ter uma princesa e fazer da minha paixão minha fonte de renda.</p>
-      <p><em>Sempre será um prazer atender você!</em></p>
+      <h2>Sobre Mim</h2>
+      <p>Eliza Gabriela Laceira<br>
+      Sou empreendedora de laços há 1 ano, comecei do nada para entregar tudo para as mamães que amam deixar sua princesa ainda mais linda.</p>
+      <p>Tenho 25 anos e sou mãe do João Pedro e da Anna Lis.<br>
+      Comecei com minha princesa Lis para realizar o sonho de ter uma princesa e fazer da minha paixão minha fonte de renda.</p>
+      <p>Sempre será um prazer atender você!</p>
     </div>
 
-    <div class="produtos" id="produtos"></div>
+    <div class="products">
+      <div class="product" data-id="1">
+        <img src="imagem1.jpg" alt="Produto 1">
+        <strong>Laço</strong><br>
+        Tamanho: P<br>
+        Largura: 36 cm ‧ Comprimento: 42 cm<br>
+        Valor: R$ 25,00<br>
+        <a class="buy-button">Comprar</a>
+      </div>
+      <div class="product" data-id="2">
+        <img src="imagem2.jpg" alt="Produto 2">
+        <strong>Laço</strong><br>
+        Tamanho: M<br>
+        Largura: 42 cm ‧ Comprimento: 48 cm<br>
+        Valor: R$ 30,00<br>
+        <a class="buy-button">Comprar</a>
+      </div>
+      <div class="product" data-id="3">
+        <img src="imagem3.jpg" alt="Produto 3">
+        <strong>Laço</strong><br>
+        Tamanho: G<br>
+        Largura: 46 cm ‧ Comprimento: 56 cm<br>
+        Valor: R$ 37,00<br>
+        <a class="buy-button">Comprar</a>
+      </div>
+      <div class="product" data-id="4">
+        <img src="imagem4.jpg" alt="Produto 4">
+        <strong>Laço</strong><br>
+        Tamanho: P<br>
+        Largura: 29 cm ‧ Comprimento: 32 cm<br>
+        Valor: R$ 20,00<br>
+        <a class="buy-button">Comprar</a>
+      </div>
+      <div class="product" data-id="5">
+        <img src="imagem5.jpg" alt="Produto 5">
+        <strong>Laço</strong><br>
+        Tamanho: M<br>
+        Largura: 38 cm ‧ Comprimento: 41 cm<br>
+        Valor: R$ 30,00<br>
+        <a class="buy-button">Comprar</a>
+      </div>
+    </div>
+
   </div>
 
-  <div class="modal" id="modal">
+  <div class="modal" id="orderModal">
     <div class="modal-content">
+      <h3>Finalizar Pedido</h3>
       <div class="tabs">
-        <button class="tab-btn active" data-tab="pagamento">Pagamento</button>
-        <button class="tab-btn" data-tab="entrega">Entrega</button>
-        <button class="tab-btn" data-tab="retirada">Retirar</button>
+        <div class="tab-btn active" data-tab="entrega">Entrega</div>
+        <div class="tab-btn" data-tab="retirada">Retirada</div>
       </div>
-      <div class="tab-content active" id="pagamento">
-        <h3>Escaneie o QR Pix</h3>
-        <img id="qrImage" src="" alt="QR Pix">
-      </div>
-      <div class="tab-content" id="entrega">
-        <label>Nome:</label><input type="text" id="entrega-nome">
-        <label>Endereço:</label><textarea id="entrega-endereco"></textarea>
-        <label>Número:</label><input type="text" id="entrega-numero">
-        <label>Cidade:</label><input type="text" id="entrega-cidade">
-        <label>Bairro:</label><input type="text" id="entrega-bairro">
-        <label>WhatsApp:</label><input type="text" id="entrega-whatsapp">
+      <div class="tab-content active" id="entrega">
+        <form class="order-form" id="formEntrega">
+          <label>Nome</label>
+          <input type="text" id="entrega-nome" required>
+          <label>Endereço</label>
+          <input type="text" id="entrega-endereco" required>
+          <label>Cidade</label>
+          <input type="text" id="entrega-cidade" required>
+          <label>Bairro</label>
+          <input type="text" id="entrega-bairro" required>
+          <label>Ponto de Referência</label>
+          <input type="text" id="entrega-ref">
+          <label>WhatsApp</label>
+          <input type="text" id="entrega-whatsapp" required>
+        </form>
       </div>
       <div class="tab-content" id="retirada">
-        <label>WhatsApp para contato:</label><input type="text" id="retirada-whatsapp">
+        <form class="order-form" id="formRetirada">
+          <label>WhatsApp para contato</label>
+          <input type="text" id="retirada-whatsapp" required>
+        </form>
       </div>
-      <button class="submit-btn" id="finalizarBtn">Finalizar</button>
-      <div class="close-btn" id="closeModal">Cancelar</div>
+      <button id="gerarQrBtn" class="buy-button">Gerar QR & Abrir WhatsApp</button>
+      <img id="qrImage" src="" alt="QR Code">
+      <button id="closeModal" class="buy-button" style="background:#ccc;color:#000;margin-top:10px;">Cancelar</button>
     </div>
   </div>
 
   <script>
-    const products = [
-      { id: '1', img: 'imagem1.jpg', nome: 'Colete M', valor: '25.0' },
-      { id: '2', img: 'imagem2.jpg', nome: 'Colete G', valor: '30.0' },
-      { id: '3', img: 'imagem3.jpg', nome: 'Colete GG', valor: '37.0' },
-      { id: '4', img: 'imagem4.jpg', nome: 'Colete P', valor: '20.0' },
-      { id: '5', img: 'imagem5.jpg', nome: 'Colete M', valor: '30.0' }
-    ];
+    let selectedProduct = null;
+    document.querySelectorAll(".product .buy-button")
+      .forEach(btn => btn.addEventListener("click", () => {
+        selectedProduct = btn.closest(".product").dataset.id;
+        document.getElementById("qrImage").src = "";
+        document.getElementById("orderModal").style.display = "flex";
+      }));
 
-    const container = document.getElementById('produtos');
-    const modal     = document.getElementById('modal');
-    const qrImage   = document.getElementById('qrImage');
-    const closeBtn  = document.getElementById('closeModal');
-    const tabBtns   = document.querySelectorAll('.tab-btn');
-    let currentProduct;
-
-    // Renderiza produtos
-    products.forEach(p => {
-      const div = document.createElement('div');
-      div.className = 'produto';
-      div.innerHTML = `
-        <img src="${p.img}" alt="${p.nome}">
-        <div class="info"><strong>${p.nome}</strong><br>Valor: R$ ${p.valor.replace('.', ',')}</div>
-        <button class="buy-button" data-id="${p.id}">Comprar</button>
-      `;
-      container.appendChild(div);
+    document.querySelectorAll(".tab-btn").forEach(tabBtn => {
+      tabBtn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+        document.querySelectorAll(".tab-content").forEach(c=>c.classList.remove("active"));
+        tabBtn.classList.add("active");
+        document.getElementById(tabBtn.dataset.tab).classList.add("active");
+      });
     });
 
-    // Abre modal
-    container.addEventListener('click', async e => {
-      if (!e.target.matches('.buy-button')) return;
-      const id = e.target.dataset.id;
-      currentProduct = products.find(x => x.id === id);
-      // gera QR Pix
-      const res = await fetch(`/.netlify/functions/generateQr?productId=${id}`);
-      const data = await res.json();
-      qrImage.src = data.qr_code;
-      // mostra modal
-      modal.style.display = 'flex';
-      // reset tabs
-      tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === 'pagamento'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === 'pagamento'));
-    });
+    document.getElementById("gerarQrBtn").addEventListener("click", async () => {
+      const res = await fetch(`/.netlify/functions/generateQr?product=${selectedProduct}`);
+      const js = await res.json();
+      document.getElementById("qrImage").src = "data:image/png;base64," + js.qrImage;
 
-    // Muda abas
-    tabBtns.forEach(btn => btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-    }));
-
-    // Finalizar
-    document.getElementById('finalizarBtn').addEventListener('click', () => {
-      let msg = `✨ Novo pedido: ${currentProduct.nome} - R$ ${currentProduct.valor}\n`;
-      if (document.getElementById('entrega').classList.contains('active')) {
-        msg += `\n📦 Entrega\nNome: ${document.getElementById('entrega-nome').value}\n` +
-               `Endereço: ${document.getElementById('entrega-endereco').value}, nº ${document.getElementById('entrega-numero').value}\n` +
-               `Cidade: ${document.getElementById('entrega-cidade').value}\n` +
-               `Bairro: ${document.getElementById('entrega-bairro').value}\n` +
-               `WhatsApp: ${document.getElementById('entrega-whatsapp').value}`;
+      let msg = "";
+      if (document.getElementById("entrega").classList.contains("active")) {
+        msg += `Entrega:%0ANome: ${encodeURIComponent(document.getElementById("entrega-nome").value)}%0A`;
+        msg += `Endereço: ${encodeURIComponent(document.getElementById("entrega-endereco").value)}%0A`;
+        msg += `Cidade: ${encodeURIComponent(document.getElementById("entrega-cidade").value)}%0A`;
+        msg += `Bairro: ${encodeURIComponent(document.getElementById("entrega-bairro").value)}%0A`;
+        msg += `Ref: ${encodeURIComponent(document.getElementById("entrega-ref").value)}%0A`;
+        msg += `Whats: ${encodeURIComponent(document.getElementById("entrega-whatsapp").value)}%0A`;
       } else {
-        msg += `\n🏠 Retirar pessoalmente\nWhatsApp: ${document.getElementById('retirada-whatsapp').value}`;
+        msg += `Retirada%0AWhats: ${encodeURIComponent(document.getElementById("retirada-whatsapp").value)}%0A`;
       }
-      const url = `https://wa.me/5531987961356?text=${encodeURIComponent(msg)}`;
-      window.open(url, '_blank');
-      modal.style.display = 'none';
+      msg += `Produto: ${selectedProduct}%0AQR: ${encodeURIComponent(js.qrCode)}`;
+
+      window.open(`https://wa.me/5531987961356?text=${msg}`, "_blank");
     });
 
-    closeBtn.addEventListener('click', () => modal.style.display = 'none');
+    document.getElementById("closeModal")
+      .addEventListener("click", () => document.getElementById("orderModal").style.display = "none");
   </script>
+
 </body>
 </html>

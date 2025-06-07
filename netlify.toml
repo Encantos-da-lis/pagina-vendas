@@ -1,7 +1,3 @@
 [build]
-  publish   = "."               # publica os arquivos estáticos da raiz
+  publish = "."
   functions = "netlify/functions"
-
-[dev]
-  functions = "netlify/functions"
-  port      = 8888
