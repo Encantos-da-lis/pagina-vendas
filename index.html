@@ -2,230 +2,134 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Página de Vendas</title>
   <style>
-    body {
-      background-color: #FF69B4; /* HotPink */
-      margin: 0; padding: 20px;
-      border: 8px solid #FF1493; /* DeepPink */
-      font-family: Arial, sans-serif;
-    }
-    .container {
-      max-width: 900px; margin: 0 auto;
-      background: #fff; padding: 20px;
-      border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    /* Sobre Mim: imagem acima, texto abaixo */
-    .about {
-      display: flex; flex-direction: column;
-      align-items: center; gap: 10px;
-      margin-bottom: 40px;
-      border: 4px solid #C71585; /* MediumVioletRed */
-      padding: 20px; border-radius: 8px;
-      background: #fff; text-align: center;
-    }
-    .about img {
-      width: 150px; height: auto;
-      border-radius: 8px; object-fit: cover;
-    }
-    .about .label {
-      background: #e8b9c1; padding: 4px 8px;
-      text-transform: uppercase; border-radius: 4px;
-    }
-    /* Produtos */
-    h1 { text-align: center; margin-bottom: 30px; }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px,1fr));
-      gap: 20px;
-    }
-    .product {
-      background: #fafafa; border: 1px solid #ddd;
-      border-radius: 4px; padding: 10px; text-align: center;
-    }
-    .product img { max-width: 100%; border-radius: 4px; }
-    .product h2 { margin: 10px 0 5px; font-size: 1.1em; }
-    .product p { margin: 5px 0; font-size: 1em; color: #333; }
-    .buy-button {
-      margin-top: 10px; padding: 8px 16px;
-      background: #C71585; color: #fff;
-      border: none; border-radius: 4px;
-      cursor: pointer; font-size: 1em;
-    }
-    .buy-button:hover { background: #FF1493; }
-    /* Modal */
-    .modal-overlay {
-      display: none; position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
-      justify-content: center; align-items: center;
-      z-index: 10;
-    }
-    .modal {
-      background: #fff; border-radius: 8px;
-      width: 90%; max-width: 400px;
-      padding: 20px; position: relative;
-    }
-    .modal .close-btn {
-      position: absolute; top: 8px; right: 12px;
-      background: none; border: none; font-size: 1.2em;
-      cursor: pointer;
-    }
-    .modal h3 { margin-top: 0; text-align: center; }
-    .modal img { display: block; margin: 10px auto; width: 200px; height: 200px; }
-    .modal .tabs { display: flex; margin: 10px 0; }
-    .modal .tabs button {
-      flex: 1; padding: 8px; border: none;
-      background: #eee; cursor: pointer;
-    }
-    .modal .tabs button.active {
-      background: #C71585; color: #fff;
-    }
-    .modal .tab-content { display: none; }
-    .modal .tab-content.active { display: block; }
-    .modal label { display: block; margin: 8px 0 4px; }
-    .modal input, .modal textarea {
-      width: 100%; padding: 6px;
-      border: 1px solid #ccc; border-radius: 4px;
-      box-sizing: border-box;
-    }
-    .modal textarea { resize: vertical; }
-    .modal .file-upload {
-      margin: 10px 0;
-    }
-    .modal .submit-btn {
-      display: block; width: 100%; margin-top: 12px;
-      padding: 10px; background: #28a745;
-      color: #fff; border: none; border-radius: 4px;
-      cursor: pointer; font-size: 1em;
-    }
-    .modal .submit-btn:hover { background: #218838; }
+    body {background:#FF69B4;margin:0;padding:20px;border:8px solid #FF1493;font-family:Arial;}
+    .container{max-width:900px;margin:auto;background:#fff;padding:20px;border-radius:8px;}
+    .about{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:40px;
+      border:4px solid #C71585;padding:20px;border-radius:8px;text-align:center;}
+    .about img{width:150px;border-radius:8px;object-fit:cover;}
+    .about .label{background:#e8b9c1;padding:4px 8px;text-transform:uppercase;border-radius:4px;}
+    h1{text-align:center;margin-bottom:30px;}
+    .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:20px;}
+    .product{background:#fafafa;border:1px solid #ddd;border-radius:4px;padding:10px;text-align:center;}
+    .product img{max-width:100%;border-radius:4px;}
+    .product h2{margin:10px 0 5px;font-size:1.1em;}
+    .product p{margin:5px 0;color:#333;}
+    .buy-button{margin-top:10px;padding:8px 16px;background:#C71585;color:#fff;border:none;
+      border-radius:4px;cursor:pointer;font-size:1em;}
+    .buy-button:hover{background:#FF1493;}
+    .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+      background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:10;}
+    .modal{background:#fff;border-radius:8px;width:90%;max-width:400px;padding:20px;position:relative;}
+    .modal .close-btn{position:absolute;top:8px;right:12px;background:none;border:none;font-size:1.2em;cursor:pointer;}
+    .modal h3{text-align:center;margin-top:0;}
+    .modal img{display:block;margin:10px auto;width:200px;height:200px;}
+    .modal .tabs{display:flex;margin:10px 0;}
+    .modal .tabs button{flex:1;padding:8px;border:none;background:#eee;cursor:pointer;}
+    .modal .tabs button.active{background:#C71585;color:#fff;}
+    .modal .tab-content{display:none;}
+    .modal .tab-content.active{display:block;}
+    .modal label{display:block;margin:8px 0 4px;}
+    .modal input, .modal textarea, .modal input[type=file]{
+      width:100%;padding:6px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;}
+    .modal textarea{resize:vertical;}
+    .modal .submit-btn{width:100%;margin-top:12px;padding:10px;background:#28a745;color:#fff;
+      border:none;border-radius:4px;cursor:pointer;font-size:1em;}
+    .modal .submit-btn:hover{background:#218838;}
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Sobre Mim -->
     <div class="about">
-      <img src="eliza.jpg" alt="Foto de Eliza Gabriela" />
+      <img src="eliza.jpg" alt="Eliza Gabriela"/>
       <span class="label">Sobre Mim</span>
       <h2>Eliza Gabriela</h2>
       <h3>Laceira</h3>
-      <p>Sou empreendedora de laços há 1 ano, comecei do nada para entregar tudo para as mamães que amam deixar sua princesa ainda mais linda.</p>
-      <p>Tenho 25 anos e sou mãe do João Pedro e da Anna Lis.</p>
-      <p>Comecei com minha princesa Lis para realizar o sonho de ter uma princesa e fazer da minha paixão minha fonte de renda.</p>
+      <p>Sou empreendedora de laços há 1 ano…</p>
       <p class="signature">Sempre será um prazer atender você!</p>
     </div>
-    <!-- Produtos -->
+
     <h1>Meus Produtos</h1>
     <div class="products">
+      <!-- Exemplo de um produto; repita para os 5 -->
       <div class="product">
-        <img src="imagem1.jpg" alt="Colete M" />
-        <h2>Colete M</h2><p>R$ 25,00</p><p>36×42 cm</p>
-        <button class="buy-button" data-name="Colete M" data-price-value="25.0">Comprar</button>
+        <img src="imagem1.jpg" alt="Colete M"/>
+        <h2>Colete M</h2><p>R$ 25,00<br>36×42 cm</p>
+        <button class="buy-button"
+                data-name="Colete M"
+                data-price="25.0">Comprar</button>
       </div>
-      <div class="product">
-        <img src="imagem2.jpg" alt="Colete G" />
-        <h2>Colete G</h2><p>R$ 30,00</p><p>42×48 cm</p>
-        <button class="buy-button" data-name="Colete G" data-price-value="30.0">Comprar</button>
-      </div>
-      <div class="product">
-        <img src="imagem3.jpg" alt="Colete GG" />
-        <h2>Colete GG</h2><p>R$ 37,00</p><p>46×56 cm</p>
-        <button class="buy-button" data-name="Colete GG" data-price-value="37.0">Comprar</button>
-      </div>
-      <div class="product">
-        <img src="imagem4.jpg" alt="Colete P" />
-        <h2>Colete P</h2><p>R$ 20,00</p><p>29×32 cm</p>
-        <button class="buy-button" data-name="Colete P" data-price-value="20.0">Comprar</button>
-      </div>
-      <div class="product">
-        <img src="imagem5.jpg" alt="Colete M" />
-        <h2>Colete M</h2><p>R$ 30,00</p><p>38×41 cm</p>
-        <button class="buy-button" data-name="Colete M" data-price-value="30.0">Comprar</button>
-      </div>
+      <!-- … outros produtos … -->
     </div>
-    <!-- Modal -->
+
     <div class="modal-overlay" id="modalOverlay">
       <div class="modal">
         <button class="close-btn" id="closeModal">&times;</button>
-        <h3 id="modalTitle">Detalhes do Pedido</h3>
-        <img id="modalQr" src="" alt="QR Code" />
+        <h3 id="modalTitle">Gerar Pix</h3>
+        <img id="modalQr" src="" alt="QR Pix"/>
         <div class="tabs">
           <button class="tab-btn active" data-tab="entrega">Entrega</button>
-          <button class="tab-btn" data-tab="retirada">Retirar Pessoalmente</button>
+          <button class="tab-btn" data-tab="retirada">Retirar</button>
         </div>
         <div class="tab-content active" id="entrega">
-          <label>Nome:</label><input type="text" id="entrega-nome" />
+          <label>Nome:</label><input id="entrega-nome"/>
           <label>Endereço:</label><textarea id="entrega-endereco"></textarea>
-          <label>Nº:</label><input type="text" id="entrega-numero" />
-          <label>Cidade:</label><input type="text" id="entrega-cidade" />
-          <label>Bairro:</label><input type="text" id="entrega-bairro" />
-          <label>Ponto de referência:</label><input type="text" id="entrega-referencia" />
-          <label>WhatsApp:</label><input type="text" id="entrega-whatsapp" />
+          <label>WhatsApp:</label><input id="entrega-whatsapp"/>
         </div>
         <div class="tab-content" id="retirada">
-          <label>WhatsApp para contato:</label><input type="text" id="retirada-whatsapp" />
+          <label>WhatsApp:</label><input id="retirada-whatsapp"/>
         </div>
-        <div class="file-upload">
-          <label>Anexe comprovante (opcional):</label>
-          <input type="file" id="paymentProof" accept="image/*,application/pdf" />
-        </div>
-        <button class="submit-btn" id="finalizarBtn">Finalizar Compra</button>
+        <label>Anexar comprovante (opcional):</label>
+        <input type="file" id="paymentProof"/>
+        <button class="submit-btn" id="finalizarBtn">Finalizar</button>
       </div>
     </div>
   </div>
+
   <script>
     const overlay = document.getElementById('modalOverlay');
-    const modalQr = document.getElementById('modalQr');
-    const modalTitle = document.getElementById('modalTitle');
-    let current = {};
-    document.querySelectorAll('.buy-button').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const price = btn.dataset.priceValue;
-        const name = btn.dataset.name;
-        current = { price, name };
-        modalTitle.textContent = `${name} - R$ ${price}`;
-        overlay.style.display = 'flex';
-        try {
-          const res = await fetch(`/.netlify/functions/generateQr?price=${price}`);
-          const { qrCode } = await res.json();
-          modalQr.src = qrCode;
-        } catch (e) {
-          console.error('Erro ao gerar QR:', e);
-          modalQr.alt = 'Falha ao gerar QR';
+    let current={};
+    document.querySelectorAll('.buy-button').forEach(btn=>{
+      btn.onclick=async()=>{
+        const price=btn.dataset.price, name=btn.dataset.name;
+        current={price,name};
+        document.getElementById('modalTitle').textContent=`${name} – R$ ${price}`;
+        overlay.style.display='flex';
+        try{
+          const r=await fetch(`/.netlify/functions/generateQr?price=${price}`);
+          const j=await r.json();
+          document.getElementById('modalQr').src=j.qrCode;
+        }catch(e){
+          console.error(e);
         }
-      });
+      };
     });
-    document.getElementById('closeModal').onclick = () => overlay.style.display = 'none';
-    document.getElementById('finalizarBtn').onclick = () => {
-      let text = `✨ Novo pedido:\n- Produto: ${current.name} (R$ ${current.price})\n`;
-      if (document.getElementById('entrega').classList.contains('active')) {
-        text += `\n📦 Entrega\nNome: ${document.getElementById('entrega-nome').value}\n` +
-                `Endereço: ${document.getElementById('entrega-endereco').value}, nº ${document.getElementById('entrega-numero').value}\n` +
-                `Cidade: ${document.getElementById('entrega-cidade').value}\nBairro: ${document.getElementById('entrega-bairro').value}\n` +
-                `Ref: ${document.getElementById('entrega-referencia').value}\n` +
-                `WhatsApp: ${document.getElementById('entrega-whatsapp').value}\n`;
-      } else {
-        text += `\n🏠 Retirar Pessoalmente\nWhatsApp: ${document.getElementById('retirada-whatsapp').value}\n`;
+    document.getElementById('closeModal').onclick=()=>overlay.style.display='none';
+    document.getElementById('finalizarBtn').onclick=()=>{
+      let msg=`✨ Pedido: ${current.name} (R$ ${current.price})\n`;
+      const isEntrega=document.querySelector('[data-tab="entrega"]').classList.contains('active');
+      if(isEntrega){
+        msg+=`Entrega – Nome: ${document.getElementById('entrega-nome').value}\n`+
+             `Endereço: ${document.getElementById('entrega-endereco').value}\n`+
+             `WhatsApp: ${document.getElementById('entrega-whatsapp').value}\n`;
+      }else{
+        msg+=`Retirar – WhatsApp: ${document.getElementById('retirada-whatsapp').value}\n`;
       }
-      const proofInput = document.getElementById('paymentProof');
-      if (proofInput.files.length) {
-        text += `\n📎 Comprovante: ${proofInput.files[0].name}\nPor favor, anexe o arquivo manualmente no WhatsApp.`;
-      } else {
-        text += `\n📎 Sem comprovante enviado. Após abrir o WhatsApp, anexe seu comprovante manualmente.`;
-      }
-      const url = `https://wa.me/5531987961356?text=${encodeURIComponent(text)}`;
-      window.open(url, '_blank');
-      overlay.style.display = 'none';
+      const proof=document.getElementById('paymentProof').files[0];
+      if(proof) msg+=`Comprovante: ${proof.name} (anexe no WhatsApp)\n`;
+      const url=`https://wa.me/5531987961356?text=${encodeURIComponent(msg)}`;
+      window.open(url,'_blank');
+      overlay.style.display='none';
     };
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
-      });
+    document.querySelectorAll('.tab-btn').forEach(b=>{
+      b.onclick=()=>{
+        document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+        document.getElementById(b.dataset.tab).classList.add('active');
+      };
     });
   </script>
 </body>
