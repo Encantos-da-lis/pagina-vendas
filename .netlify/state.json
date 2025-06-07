@@ -1,0 +1,20 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Betim",
+			"country": {
+				"code": "BR",
+				"name": "Brazil"
+			},
+			"subdivision": {
+				"code": "MG",
+				"name": "Minas Gerais"
+			},
+			"timezone": "America/Sao_Paulo",
+			"latitude": -19.9644,
+			"longitude": -44.1969,
+			"postalCode": "32500"
+		},
+		"timestamp": 1749254349932
+	}
+}

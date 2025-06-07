@@ -2,11 +2,15 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Página de Vendas</title>
 
   <style>
+<<<<<<< HEAD
     /* Cores principais */
+=======
+    /* Página */
+>>>>>>> c3c1b10 (Front: QR dinâmico PicPay e layout Sobre Mim responsivo)
     body {
       margin: 0;
       padding: 0;
@@ -18,6 +22,7 @@
     .page-border {
       border: 5px solid #FF1493;     /* DeepPink */
       padding: 20px;
+<<<<<<< HEAD
       max-width: 1000px;
       margin: 20px auto;
       box-sizing: border-box;
@@ -101,6 +106,100 @@
       .about img {
         margin: 0 0 15px;
       }
+=======
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* Sobre Mim (imagem acima do texto) */
+    .about {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+      border: 4px solid #C71585; /* MediumVioletRed */
+      padding: 20px;
+      border-radius: 8px;
+      background: #fff;
+      text-align: center;
+    }
+    .about img {
+      width: 150px;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .about .label {
+      background: #e8b9c1;
+      padding: 4px 8px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    /* Produtos */
+    h1 { text-align: center; margin-bottom: 30px; }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px,1fr));
+      gap: 20px;
+    }
+    .product {
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px;
+      text-align: center;
+    }
+    .product img { max-width: 100%; border-radius: 4px; }
+    .product h2 { margin: 10px 0 5px; font-size: 1.1em; }
+    .product p { margin: 5px 0; font-size: 1em; color: #333; }
+    .buy-button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: #C71585;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .buy-button:hover { background: #FF1493; }
+
+    /* Modal de QR */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+    .modal {
+      background: #fff;
+      border-radius: 8px;
+      width: 90%; max-width: 360px;
+      padding: 20px;
+      position: relative;
+      text-align: center;
+    }
+    .modal .close-btn {
+      position: absolute;
+      top: 8px; right: 12px;
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+    .modal h3 { margin-top: 0; }
+    .modal img {
+      width: 200px;
+      height: 200px;
+      margin: 10px auto;
+>>>>>>> c3c1b10 (Front: QR dinâmico PicPay e layout Sobre Mim responsivo)
     }
   </style>
 </head>
@@ -108,6 +207,7 @@
 <body>
   <div class="page-border">
 
+<<<<<<< HEAD
     <!-- Sobre mim -->
     <div class="about">
       <img src="eliza.jpg" alt="Foto da Eliza">
@@ -186,5 +286,114 @@
     </div>
 
   </div>
+=======
+    <!-- Sobre Mim -->
+    <div class="about">
+      <img src="eliza.jpg" alt="Foto de Eliza Gabriela" />
+      <span class="label">Sobre Mim</span>
+      <h2>Eliza Gabriela</h2>
+      <h3>Laceira</h3>
+      <p>Sou empreendedora de laços há 1 ano, comecei do nada para entregar tudo para as mamães que amam deixar sua princesa ainda mais linda.</p>
+      <p>Tenho 25 anos e sou mãe do João Pedro e da Anna Lis.</p>
+      <p>Comecei com minha princesa Lis para realizar o sonho de ter uma princesa e fazer da minha paixão minha fonte de renda.</p>
+      <p class="signature">Sempre será um prazer atender você!</p>
+    </div>
+
+    <!-- Produtos -->
+    <h1>Meus Produtos</h1>
+    <div class="products">
+      <div class="product">
+        <img src="imagem1.jpg" alt="Colete M" />
+        <h2>Colete M</h2>
+        <p>R$ 25,00 &ndash; 36×42 cm</p>
+        <button class="buy-button"
+                data-name="Colete M"
+                data-price-value="25.0">
+          Comprar
+        </button>
+      </div>
+      <div class="product">
+        <img src="imagem2.jpg" alt="Colete G" />
+        <h2>Colete G</h2>
+        <p>R$ 30,00 &ndash; 42×48 cm</p>
+        <button class="buy-button"
+                data-name="Colete G"
+                data-price-value="30.0">
+          Comprar
+        </button>
+      </div>
+      <div class="product">
+        <img src="imagem3.jpg" alt="Colete GG" />
+        <h2>Colete GG</h2>
+        <p>R$ 37,00 &ndash; 46×56 cm</p>
+        <button class="buy-button"
+                data-name="Colete GG"
+                data-price-value="37.0">
+          Comprar
+        </button>
+      </div>
+      <div class="product">
+        <img src="imagem4.jpg" alt="Colete P" />
+        <h2>Colete P</h2>
+        <p>R$ 20,00 &ndash; 29×32 cm</p>
+        <button class="buy-button"
+                data-name="Colete P"
+                data-price-value="20.0">
+          Comprar
+        </button>
+      </div>
+      <div class="product">
+        <img src="imagem5.jpg" alt="Colete M variação" />
+        <h2>Colete M</h2>
+        <p>R$ 30,00 &ndash; 38×41 cm</p>
+        <button class="buy-button"
+                data-name="Colete M"
+                data-price-value="30.0">
+          Comprar
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal de QR -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <button class="close-btn" id="closeModal">&times;</button>
+        <h3 id="modalTitle">Gerar QR</h3>
+        <img id="modalQr" src="" alt="QR Code" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const overlay = document.getElementById('modalOverlay');
+    const closeBtn = document.getElementById('closeModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalQr = document.getElementById('modalQr');
+
+    document.querySelectorAll('.buy-button').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const name  = btn.dataset.name;
+        const price = btn.dataset.priceValue;
+        // Atualiza título do modal
+        modalTitle.textContent = `${name} – R$ ${price.replace('.', ',')}`;
+        // Exibe modal
+        overlay.style.display = 'flex';
+        // Busca QR dinâmico da Netlify Function
+        try {
+          const res = await fetch(`/.netlify/functions/generateQr?price=${price}`);
+          const json = await res.json();
+          modalQr.src = json.qrCode;
+        } catch (err) {
+          modalQr.alt = 'Erro ao gerar QR';
+          console.error(err);
+        }
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+  </script>
+>>>>>>> c3c1b10 (Front: QR dinâmico PicPay e layout Sobre Mim responsivo)
 </body>
 </html>
