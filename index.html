@@ -1,70 +1,187 @@
-<div class="page-border">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Encantos da Lis – Colete Country</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0; padding: 0;
+      background: #f7f7f7;
+      color: #333;
+    }
+    .header {
+      text-align: center;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .header img {
+      width: 150px;
+      height: auto;
+      border-radius: 50%;
+    }
+    .header h1 {
+      margin: 10px 0 5px;
+      font-size: 24px;
+    }
+    .header p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.4;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .product {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .product img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    .info {
+      padding: 15px;
+      font-size: 14px;
+    }
+    .info strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+    .info em {
+      color: #555;
+    }
+    .buy-button {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      background: #FF1493;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    .buy-button:hover {
+      background: #e01381;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER COM FOTO E SOBRE MIM -->
+  <div class="header">
+    <img src="eliza.jpg" alt="Eliza Gabriela">
+    <h1>Sobre Mim</h1>
+    <p>
+      Eliza Gabriela<br>
+      Laceira<br>
+      Sou empreendedora de laços há 1 ano, comecei do nada para entregar tudo para as mamães que amam deixar sua princesa ainda mais linda.<br>
+      Tenho 25 anos e sou mãe do João Pedro e da Anna Lis.<br>
+      Comecei com minha princesa Lis para realizar o sonho de ter uma princesa e fazer da minha paixão minha fonte de renda.<br>
+      Sempre será um prazer atender você!
+    </p>
+  </div>
+
+  <!-- PRODUTOS -->
   <div class="products">
 
     <!-- Produto 1 -->
     <div class="product">
       <img src="imagem1.jpg" alt="Colete Country">
       <div class="info">
-        <strong>Colete Country</strong><br>
-        <span class="material">"feltro"</span><br><br>
+        <strong>Colete Country</strong>
+        <em>"Feltro"</em><br>
         Tamanho: P<br>
         Largura: 36 cm · Comprimento: 42 cm<br>
         Valor: R$ 25,00
       </div>
-      <a class="buy-button" data-value="25.00">Comprar</a>
+      <a class="buy-button" href="#" data-price="25">Gerar QR R$25,00</a>
     </div>
 
     <!-- Produto 2 -->
     <div class="product">
       <img src="imagem2.jpg" alt="Colete Country">
       <div class="info">
-        <strong>Colete Country</strong><br>
-        <span class="material">"feltro"</span><br><br>
+        <strong>Colete Country</strong>
+        <em>"Feltro"</em><br>
         Tamanho: M<br>
         Largura: 42 cm · Comprimento: 48 cm<br>
         Valor: R$ 30,00
       </div>
-      <a class="buy-button" data-value="30.00">Comprar</a>
+      <a class="buy-button" href="#" data-price="30">Gerar QR R$30,00</a>
     </div>
 
     <!-- Produto 3 -->
     <div class="product">
       <img src="imagem3.jpg" alt="Colete Country">
       <div class="info">
-        <strong>Colete Country</strong><br>
-        <span class="material">"feltro"</span><br><br>
+        <strong>Colete Country</strong>
+        <em>"Feltro"</em><br>
         Tamanho: G<br>
         Largura: 46 cm · Comprimento: 56 cm<br>
         Valor: R$ 37,00
       </div>
-      <a class="buy-button" data-value="37.00">Comprar</a>
+      <a class="buy-button" href="#" data-price="37">Gerar QR R$37,00</a>
     </div>
 
     <!-- Produto 4 -->
     <div class="product">
       <img src="imagem4.jpg" alt="Colete Country">
       <div class="info">
-        <strong>Colete Country</strong><br>
-        <span class="material">"feltro"</span><br><br>
-        Tamanho: GG<br>
+        <strong>Colete Country</strong>
+        <em>"Feltro"</em><br>
+        Tamanho: PP<br>
         Largura: 29 cm · Comprimento: 32 cm<br>
         Valor: R$ 20,00
       </div>
-      <a class="buy-button" data-value="20.00">Comprar</a>
+      <a class="buy-button" href="#" data-price="20">Gerar QR R$20,00</a>
     </div>
 
     <!-- Produto 5 -->
     <div class="product">
       <img src="imagem5.jpg" alt="Colete Country">
       <div class="info">
-        <strong>Colete Country</strong><br>
-        <span class="material">"feltro"</span><br><br>
-        Tamanho: EG<br>
+        <strong>Colete Country</strong>
+        <em>"Feltro"</em><br>
+        Tamanho: M<br>
         Largura: 38 cm · Comprimento: 41 cm<br>
         Valor: R$ 30,00
       </div>
-      <a class="buy-button" data-value="30.00">Comprar</a>
+      <a class="buy-button" href="#" data-price="30">Gerar QR R$30,00</a>
     </div>
 
   </div>
-</div>
+
+  <!-- AQUI VOCÊ COLOCA O SEU SCRIPT DE GERAÇÃO DE QR E WHATSAPP -->
+  <script>
+    // Exemplo simplificado: abrir link de pagamento ou WhatsApp
+    document.querySelectorAll('.buy-button').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const price = btn.dataset.price;
+        // aqui você chama seu endpoint Netlify /generateQr?valor=price
+        // e depois abre modal ou redireciona para o pix
+        alert('Gerar QR de R$' + price);
+      });
+    });
+  </script>
+
+</body>
+</html>
