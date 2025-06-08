@@ -4,184 +4,330 @@
   <meta charset="UTF-8">
   <title>Encantos da Lis – Colete Country</title>
   <style>
+    /* Base & Reset */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: sans-serif;
-      margin: 0; padding: 0;
-      background: #f7f7f7;
-      color: #333;
+      font-family: Arial, sans-serif;
+      background: #FF69B4;   /* HotPink */
     }
-    .header {
-      text-align: center;
+    .page-border {
+      border: 8px solid #FF1493; /* DeepPink */
+      max-width: 1000px;
+      margin: 20px auto;
       background: #fff;
+    }
+    /* Sobre Mim */
+    .sobre {
+      background: #C71585;    /* MediumVioletRed */
+      color: #fff;
+      text-align: center;
       padding: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .header img {
-      width: 150px;
-      height: auto;
+    .sobre img {
+      width: 150px; height: auto;
       border-radius: 50%;
+      margin-bottom: 15px;
     }
-    .header h1 {
-      margin: 10px 0 5px;
-      font-size: 24px;
-    }
-    .header p {
-      margin: 0;
-      font-size: 14px;
-      line-height: 1.4;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    .sobre h1 { font-size: 24px; margin-bottom: 10px; }
+    .sobre p { font-size: 14px; line-height: 1.5; max-width: 600px; margin: auto; }
+
+    /* Grade de Produtos */
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
       padding: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
     }
     .product {
       background: #fff;
+      border: 2px solid #C71585; /* MediumVioletRed */
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
     }
     .product img {
-      width: 100%;
-      height: auto;
+      width: 100%; height: auto;
       object-fit: cover;
     }
     .info {
       padding: 15px;
       font-size: 14px;
+      flex: 1;
     }
-    .info strong {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 16px;
-    }
-    .info em {
-      color: #555;
-    }
+    .info strong { display: block; font-size: 16px; margin-bottom: 5px; }
+    .info em { display: block; font-style: italic; color: #555; margin-bottom: 10px; }
+    .info .details { margin-bottom: 10px; }
+
     .buy-button {
-      display: block;
-      text-align: center;
-      padding: 12px;
-      background: #FF1493;
+      background: #FF1493; /* DeepPink */
       color: #fff;
+      text-align: center;
+      padding: 10px;
       text-decoration: none;
       font-weight: bold;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
+      cursor: pointer;
     }
     .buy-button:hover {
-      background: #e01381;
+      background: #e01381; /* darker */
     }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center; justify-content: center;
+      z-index: 1000;
+    }
+    .modal {
+      background: #fff;
+      border-radius: 8px;
+      width: 90%; max-width: 400px;
+      overflow: hidden;
+    }
+    .modal-header {
+      background: #C71585;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-size: 18px;
+      position: relative;
+    }
+    .modal-header .close-btn {
+      position: absolute; top: 8px; right: 12px;
+      cursor: pointer; font-size: 20px;
+    }
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      background: #f0f0f0;
+      text-align: center;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background: #fff;
+      font-weight: bold;
+      border-bottom: 2px solid #C71585;
+    }
+    .tab-content {
+      display: none;
+      padding: 15px;
+    }
+    .tab-content.active { display: block; }
+    .tab-content label {
+      display: block; margin-bottom: 5px; font-weight: bold;
+    }
+    .tab-content input,
+    .tab-content textarea {
+      width: 100%; margin-bottom: 10px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;
+    }
+
+    /* QR e Finalizar */
+    #qrImage {
+      display: block; margin: 10px auto; max-width: 200px;
+    }
+    #finalizarBtn {
+      width: 100%;
+      padding: 10px;
+      background: #FF1493;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #finalizarBtn:hover { background: #e01381; }
   </style>
 </head>
 <body>
 
-  <!-- HEADER COM FOTO E SOBRE MIM -->
-  <div class="header">
-    <img src="eliza.jpg" alt="Eliza Gabriela">
-    <h1>Sobre Mim</h1>
-    <p>
-      Eliza Gabriela<br>
-      Laceira<br>
-      Sou empreendedora de laços há 1 ano, comecei do nada para entregar tudo para as mamães que amam deixar sua princesa ainda mais linda.<br>
-      Tenho 25 anos e sou mãe do João Pedro e da Anna Lis.<br>
-      Comecei com minha princesa Lis para realizar o sonho de ter uma princesa e fazer da minha paixão minha fonte de renda.<br>
-      Sempre será um prazer atender você!
-    </p>
+  <div class="page-border">
+
+    <!-- Sobre Mim -->
+    <div class="sobre">
+      <img src="eliza.jpg" alt="Eliza Gabriela Laceira">
+      <h1>Sobre Mim</h1>
+      <p>
+        Eliza Gabriela Laceira<br>
+        Sou empreendedora de laços há 1 ano, comecei do nada para entregar tudo para as mamães que amam deixar sua princesa ainda mais linda.<br>
+        Tenho 25 anos e sou mãe do João Pedro e da Anna Lis.<br>
+        Comecei com minha princesa Lis para realizar o sonho de ter uma princesa e fazer da minha paixão minha fonte de renda.<br>
+        <em>Sempre será um prazer atender você!</em>
+      </p>
+    </div>
+
+    <!-- Produtos -->
+    <div class="products">
+      <!-- repetir bloco para cada produto -->
+      <div class="product" data-id="1">
+        <img src="imagem1.jpg" alt="Colete Country">
+        <div class="info">
+          <strong>Colete Country</strong>
+          <em>"feltro"</em>
+          <div class="details">
+            Tamanho: P<br>
+            Largura: 36 cm · Comprimento: 42 cm
+          </div>
+          <div class="details">Valor: R$ 25,00</div>
+        </div>
+        <div class="buy-button">Comprar</div>
+      </div>
+
+      <div class="product" data-id="2">
+        <img src="imagem2.jpg" alt="Colete Country">
+        <div class="info">
+          <strong>Colete Country</strong>
+          <em>"feltro"</em>
+          <div class="details">
+            Tamanho: M<br>
+            Largura: 42 cm · Comprimento: 48 cm
+          </div>
+          <div class="details">Valor: R$ 30,00</div>
+        </div>
+        <div class="buy-button">Comprar</div>
+      </div>
+
+      <div class="product" data-id="3">
+        <img src="imagem3.jpg" alt="Colete Country">
+        <div class="info">
+          <strong>Colete Country</strong>
+          <em>"feltro"</em>
+          <div class="details">
+            Tamanho: G<br>
+            Largura: 46 cm · Comprimento: 56 cm
+          </div>
+          <div class="details">Valor: R$ 37,00</div>
+        </div>
+        <div class="buy-button">Comprar</div>
+      </div>
+
+      <div class="product" data-id="4">
+        <img src="imagem4.jpg" alt="Colete Country">
+        <div class="info">
+          <strong>Colete Country</strong>
+          <em>"feltro"</em>
+          <div class="details">
+            Tamanho: PP<br>
+            Largura: 29 cm · Comprimento: 32 cm
+          </div>
+          <div class="details">Valor: R$ 20,00</div>
+        </div>
+        <div class="buy-button">Comprar</div>
+      </div>
+
+      <div class="product" data-id="5">
+        <img src="imagem5.jpg" alt="Colete Country">
+        <div class="info">
+          <strong>Colete Country</strong>
+          <em>"feltro"</em>
+          <div class="details">
+            Tamanho: M<br>
+            Largura: 38 cm · Comprimento: 41 cm
+          </div>
+          <div class="details">Valor: R$ 30,00</div>
+        </div>
+        <div class="buy-button">Comprar</div>
+      </div>
+    </div>
   </div>
 
-  <!-- PRODUTOS -->
-  <div class="products">
-
-    <!-- Produto 1 -->
-    <div class="product">
-      <img src="imagem1.jpg" alt="Colete Country">
-      <div class="info">
-        <strong>Colete Country</strong>
-        <em>"Feltro"</em><br>
-        Tamanho: P<br>
-        Largura: 36 cm · Comprimento: 42 cm<br>
-        Valor: R$ 25,00
+  <!-- Modal de Pedido -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        Preencha os Dados
+        <span class="close-btn" id="closeModal">&times;</span>
       </div>
-      <a class="buy-button" href="#" data-price="25">Gerar QR R$25,00</a>
-    </div>
-
-    <!-- Produto 2 -->
-    <div class="product">
-      <img src="imagem2.jpg" alt="Colete Country">
-      <div class="info">
-        <strong>Colete Country</strong>
-        <em>"Feltro"</em><br>
-        Tamanho: M<br>
-        Largura: 42 cm · Comprimento: 48 cm<br>
-        Valor: R$ 30,00
+      <div class="tabs">
+        <div class="tab-btn active" data-tab="entrega">Entrega</div>
+        <div class="tab-btn" data-tab="retirada">Retirada</div>
       </div>
-      <a class="buy-button" href="#" data-price="30">Gerar QR R$30,00</a>
-    </div>
-
-    <!-- Produto 3 -->
-    <div class="product">
-      <img src="imagem3.jpg" alt="Colete Country">
-      <div class="info">
-        <strong>Colete Country</strong>
-        <em>"Feltro"</em><br>
-        Tamanho: G<br>
-        Largura: 46 cm · Comprimento: 56 cm<br>
-        Valor: R$ 37,00
+      <div class="tab-content active" id="entrega">
+        <label>Nome</label>
+        <input type="text" id="entrega-nome">
+        <label>Endereço</label>
+        <textarea id="entrega-endereco"></textarea>
+        <label>Cidade</label>
+        <input type="text" id="entrega-cidade">
+        <label>Bairro</label>
+        <input type="text" id="entrega-bairro">
+        <label>Ponto de Referência</label>
+        <input type="text" id="entrega-ref">
+        <label>WhatsApp</label>
+        <input type="text" id="entrega-whatsapp">
       </div>
-      <a class="buy-button" href="#" data-price="37">Gerar QR R$37,00</a>
-    </div>
-
-    <!-- Produto 4 -->
-    <div class="product">
-      <img src="imagem4.jpg" alt="Colete Country">
-      <div class="info">
-        <strong>Colete Country</strong>
-        <em>"Feltro"</em><br>
-        Tamanho: PP<br>
-        Largura: 29 cm · Comprimento: 32 cm<br>
-        Valor: R$ 20,00
+      <div class="tab-content" id="retirada">
+        <label>WhatsApp para Contato</label>
+        <input type="text" id="retirada-whatsapp">
       </div>
-      <a class="buy-button" href="#" data-price="20">Gerar QR R$20,00</a>
+      <img id="qrImage" alt="QR Code gerado">
+      <button id="finalizarBtn">Finalizar Compra</button>
     </div>
-
-    <!-- Produto 5 -->
-    <div class="product">
-      <img src="imagem5.jpg" alt="Colete Country">
-      <div class="info">
-        <strong>Colete Country</strong>
-        <em>"Feltro"</em><br>
-        Tamanho: M<br>
-        Largura: 38 cm · Comprimento: 41 cm<br>
-        Valor: R$ 30,00
-      </div>
-      <a class="buy-button" href="#" data-price="30">Gerar QR R$30,00</a>
-    </div>
-
   </div>
 
-  <!-- AQUI VOCÊ COLOCA O SEU SCRIPT DE GERAÇÃO DE QR E WHATSAPP -->
   <script>
-    // Exemplo simplificado: abrir link de pagamento ou WhatsApp
-    document.querySelectorAll('.buy-button').forEach(btn => {
+    const buyButtons = document.querySelectorAll('.buy-button');
+    const modal = document.getElementById('modalOverlay');
+    const closeModal = document.getElementById('closeModal');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const qrImage = document.getElementById('qrImage');
+    const finalizarBtn = document.getElementById('finalizarBtn');
+    let currentId, currentPrice;
+
+    // Mapeia preços
+    const prices = {1:25.00,2:30.00,3:37.00,4:20.00,5:30.00};
+
+    buyButtons.forEach(btn => {
       btn.addEventListener('click', e => {
-        e.preventDefault();
-        const price = btn.dataset.price;
-        // aqui você chama seu endpoint Netlify /generateQr?valor=price
-        // e depois abre modal ou redireciona para o pix
-        alert('Gerar QR de R$' + price);
+        const prod = e.target.closest('.product');
+        currentId = prod.dataset.id;
+        currentPrice = prices[currentId];
+        qrImage.src = '';
+        modal.style.display = 'flex';
       });
     });
-  </script>
 
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b=>b.classList.remove('active'));
+        tabContents.forEach(c=>c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    finalizarBtn.addEventListener('click', async () => {
+      // gera QR via função Netlify
+      const res = await fetch(`/.netlify/functions/generateQr?product=${currentId}`);
+      const data = await res.json();
+      qrImage.src = data.qrImage ? `data:image/png;base64,${data.qrImage}` : data.qrCode;
+
+      // montar mensagem WhatsApp
+      let msg = `✨ Pedido: Colete Country – R$ ${currentPrice.toFixed(2)}\n`;
+      if (document.getElementById('entrega').classList.contains('active')) {
+        msg += `📦 Entrega\nNome: ${encodeURIComponent(document.getElementById('entrega-nome').value)}\n`+
+               `Endereço: ${encodeURIComponent(document.getElementById('entrega-endereco').value)}\n`+
+               `Cidade: ${encodeURIComponent(document.getElementById('entrega-cidade').value)}\n`+
+               `Bairro: ${encodeURIComponent(document.getElementById('entrega-bairro').value)}\n`+
+               `Ref: ${encodeURIComponent(document.getElementById('entrega-ref').value)}\n`+
+               `WhatsApp: ${encodeURIComponent(document.getElementById('entrega-whatsapp').value)}\n`;
+      } else {
+        msg += `🏠 Retirada\nWhatsApp: ${encodeURIComponent(document.getElementById('retirada-whatsapp').value)}\n`;
+      }
+      msg += `💳 QR Pix acima.`;
+
+      // abre no WhatsApp
+      window.open(`https://wa.me/5531987961356?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+  </script>
 </body>
 </html>
