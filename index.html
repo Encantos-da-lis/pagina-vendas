@@ -2,331 +2,126 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Encantos da Lis – Colete Country</title>
+  <title>Encantos da Lis – Pagamento PIX</title>
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
   <style>
-    /* Base & Reset */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Arial, sans-serif;
-      background: #FF69B4;   /* HotPink */
-    }
-    .page-border {
-      border: 8px solid #FF1493; /* DeepPink */
-      max-width: 1000px;
-      margin: 20px auto;
-      background: #fff;
-    }
-    /* Sobre Mim */
-    .sobre {
-      background: #C71585;    /* MediumVioletRed */
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-    .sobre img {
-      width: 150px; height: auto;
-      border-radius: 50%;
-      margin-bottom: 15px;
-    }
-    .sobre h1 { font-size: 24px; margin-bottom: 10px; }
-    .sobre p { font-size: 14px; line-height: 1.5; max-width: 600px; margin: auto; }
-
-    /* Grade de Produtos */
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .product {
-      background: #fff;
-      border: 2px solid #C71585; /* MediumVioletRed */
-      border-radius: 8px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .product img {
-      width: 100%; height: auto;
-      object-fit: cover;
-    }
-    .info {
-      padding: 15px;
-      font-size: 14px;
-      flex: 1;
-    }
-    .info strong { display: block; font-size: 16px; margin-bottom: 5px; }
-    .info em { display: block; font-style: italic; color: #555; margin-bottom: 10px; }
-    .info .details { margin-bottom: 10px; }
-
-    .buy-button {
-      background: #FF1493; /* DeepPink */
-      color: #fff;
-      text-align: center;
-      padding: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .buy-button:hover {
-      background: #e01381; /* darker */
-    }
-
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:Arial,sans-serif;background:#FF69B4;}
+    .page-border{border:8px solid #FF1493;max-width:1000px;margin:20px auto;background:#fff;}
+    .sobre{background:#C71585;color:#fff;text-align:center;padding:20px;}
+    .sobre img{width:150px;border-radius:50%;margin-bottom:15px;}
+    .sobre h1{font-size:24px;margin-bottom:10px;}
+    .sobre p{font-size:14px;line-height:1.5;max-width:600px;margin:auto;}
+    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;padding:20px;}
+    .product{background:#fff;border:2px solid #C71585;border-radius:8px;display:flex;flex-direction:column;}
+    .product img{width:100%;object-fit:cover;}
+    .info{padding:15px;flex:1;font-size:14px;}
+    .info strong{display:block;font-size:16px;margin-bottom:5px;}
+    .info em{display:block;font-style:italic;color:#555;margin-bottom:10px;}
+    .info .details{margin-bottom:10px;}
+    .buy-btn{background:#FF1493;color:#fff;text-align:center;padding:10px;cursor:pointer;text-decoration:none;font-weight:bold;border-bottom-left-radius:8px;border-bottom-right-radius:8px;}
+    .buy-btn:hover{background:#e01381;}
     /* Modal */
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.6);
-      display: none;
-      align-items: center; justify-content: center;
-      z-index: 1000;
-    }
-    .modal {
-      background: #fff;
-      border-radius: 8px;
-      width: 90%; max-width: 400px;
-      overflow: hidden;
-    }
-    .modal-header {
-      background: #C71585;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-      font-size: 18px;
-      position: relative;
-    }
-    .modal-header .close-btn {
-      position: absolute; top: 8px; right: 12px;
-      cursor: pointer; font-size: 20px;
-    }
-    .tabs {
-      display: flex;
-      border-bottom: 1px solid #ddd;
-    }
-    .tab-btn {
-      flex: 1;
-      padding: 10px;
-      background: #f0f0f0;
-      text-align: center;
-      cursor: pointer;
-    }
-    .tab-btn.active {
-      background: #fff;
-      font-weight: bold;
-      border-bottom: 2px solid #C71585;
-    }
-    .tab-content {
-      display: none;
-      padding: 15px;
-    }
-    .tab-content.active { display: block; }
-    .tab-content label {
-      display: block; margin-bottom: 5px; font-weight: bold;
-    }
-    .tab-content input,
-    .tab-content textarea {
-      width: 100%; margin-bottom: 10px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;
-    }
-
-    /* QR e Finalizar */
-    #qrImage {
-      display: block; margin: 10px auto; max-width: 200px;
-    }
-    #finalizarBtn {
-      width: 100%;
-      padding: 10px;
-      background: #FF1493;
-      color: #fff;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    #finalizarBtn:hover { background: #e01381; }
+    .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;z-index:1000;}
+    .modal{background:#fff;border-radius:8px;max-width:400px;width:90%;overflow:hidden;}
+    .modal-header{background:#C71585;color:#fff;padding:10px;position:relative;text-align:center;}
+    .modal-header .close{position:absolute;top:8px;right:12px;cursor:pointer;font-size:20px;}
+    .tabs{display:flex;border-bottom:1px solid #ddd;}
+    .tab-btn{flex:1;padding:10px;text-align:center;cursor:pointer;background:#f0f0f0;}
+    .tab-btn.active{background:#fff;font-weight:bold;border-bottom:2px solid #C71585;}
+    .tab-content{display:none;padding:15px;}
+    .tab-content.active{display:block;}
+    .tab-content label{display:block;margin-bottom:5px;font-weight:bold;}
+    .tab-content input,.tab-content textarea{width:100%;margin-bottom:10px;padding:8px;border:1px solid #ccc;border-radius:4px;}
+    #qrContainer{text-align:center;padding:15px;}
+    #success{display:none;color:green;text-align:center;padding:10px;}
+    #finalizar{background:#FF1493;color:#fff;width:100%;padding:10px;border:none;cursor:pointer;font-size:16px;}
+    #finalizar:hover{background:#e01381;}
   </style>
 </head>
 <body>
-
   <div class="page-border">
-
-    <!-- Sobre Mim -->
     <div class="sobre">
-      <img src="eliza.jpg" alt="Eliza Gabriela Laceira">
+      <img src="eliza.jpg" alt="Eliza Gabriela">
       <h1>Sobre Mim</h1>
-      <p>
-        Eliza Gabriela Laceira<br>
-        Sou empreendedora de laços há 1 ano, comecei do nada para entregar tudo para as mamães que amam deixar sua princesa ainda mais linda.<br>
-        Tenho 25 anos e sou mãe do João Pedro e da Anna Lis.<br>
-        Comecei com minha princesa Lis para realizar o sonho de ter uma princesa e fazer da minha paixão minha fonte de renda.<br>
-        <em>Sempre será um prazer atender você!</em>
-      </p>
+      <p>Eliza Gabriela Laceira<br>
+      Sou empreendedora de laços há 1 ano, comecei do nada para entregar tudo para as mamães que amam deixar sua princesa ainda mais linda.<br>
+      Tenho 25 anos e sou mãe do João Pedro e da Anna Lis.<br>
+      Comecei com minha princesa Lis para realizar o sonho de ter uma princesa e fazer da minha paixão minha fonte de renda.<br>
+      <em>Sempre será um prazer atender você!</em></p>
     </div>
-
-    <!-- Produtos -->
     <div class="products">
-      <!-- repetir bloco para cada produto -->
-      <div class="product" data-id="1">
+      <!-- repetir para cada produto -->
+      <div class="product" data-id="1" data-price="25.00">
         <img src="imagem1.jpg" alt="Colete Country">
         <div class="info">
           <strong>Colete Country</strong>
           <em>"feltro"</em>
-          <div class="details">
-            Tamanho: P<br>
-            Largura: 36 cm · Comprimento: 42 cm
-          </div>
+          <div class="details">Tamanho: P<br>36 cm · 42 cm</div>
           <div class="details">Valor: R$ 25,00</div>
         </div>
-        <div class="buy-button">Comprar</div>
+        <div class="buy-btn">Comprar</div>
       </div>
-
-      <div class="product" data-id="2">
-        <img src="imagem2.jpg" alt="Colete Country">
-        <div class="info">
-          <strong>Colete Country</strong>
-          <em>"feltro"</em>
-          <div class="details">
-            Tamanho: M<br>
-            Largura: 42 cm · Comprimento: 48 cm
-          </div>
-          <div class="details">Valor: R$ 30,00</div>
-        </div>
-        <div class="buy-button">Comprar</div>
-      </div>
-
-      <div class="product" data-id="3">
-        <img src="imagem3.jpg" alt="Colete Country">
-        <div class="info">
-          <strong>Colete Country</strong>
-          <em>"feltro"</em>
-          <div class="details">
-            Tamanho: G<br>
-            Largura: 46 cm · Comprimento: 56 cm
-          </div>
-          <div class="details">Valor: R$ 37,00</div>
-        </div>
-        <div class="buy-button">Comprar</div>
-      </div>
-
-      <div class="product" data-id="4">
-        <img src="imagem4.jpg" alt="Colete Country">
-        <div class="info">
-          <strong>Colete Country</strong>
-          <em>"feltro"</em>
-          <div class="details">
-            Tamanho: PP<br>
-            Largura: 29 cm · Comprimento: 32 cm
-          </div>
-          <div class="details">Valor: R$ 20,00</div>
-        </div>
-        <div class="buy-button">Comprar</div>
-      </div>
-
-      <div class="product" data-id="5">
-        <img src="imagem5.jpg" alt="Colete Country">
-        <div class="info">
-          <strong>Colete Country</strong>
-          <em>"feltro"</em>
-          <div class="details">
-            Tamanho: M<br>
-            Largura: 38 cm · Comprimento: 41 cm
-          </div>
-          <div class="details">Valor: R$ 30,00</div>
-        </div>
-        <div class="buy-button">Comprar</div>
-      </div>
+      <!-- ... imagem2..5 similar com preços 30,37,20,30 -->
     </div>
   </div>
-
-  <!-- Modal de Pedido -->
-  <div class="modal-overlay" id="modalOverlay">
+  <div class="overlay" id="overlay">
     <div class="modal">
-      <div class="modal-header">
-        Preencha os Dados
-        <span class="close-btn" id="closeModal">&times;</span>
-      </div>
+      <div class="modal-header">Pagamento PIX <span class="close" id="close">×</span></div>
       <div class="tabs">
-        <div class="tab-btn active" data-tab="entrega">Entrega</div>
-        <div class="tab-btn" data-tab="retirada">Retirada</div>
+        <div class="tab-btn active" data-tab="payment">Pagamento</div>
+        <div class="tab-btn" data-tab="form">Formulário</div>
       </div>
-      <div class="tab-content active" id="entrega">
-        <label>Nome</label>
-        <input type="text" id="entrega-nome">
-        <label>Endereço</label>
-        <textarea id="entrega-endereco"></textarea>
-        <label>Cidade</label>
-        <input type="text" id="entrega-cidade">
-        <label>Bairro</label>
-        <input type="text" id="entrega-bairro">
-        <label>Ponto de Referência</label>
-        <input type="text" id="entrega-ref">
-        <label>WhatsApp</label>
-        <input type="text" id="entrega-whatsapp">
+      <div class="tab-content active" id="payment">
+        <div id="mp-checkout"></div>
+        <div id="success">🎉 Pagamento concluído com sucesso!</div>
       </div>
-      <div class="tab-content" id="retirada">
-        <label>WhatsApp para Contato</label>
-        <input type="text" id="retirada-whatsapp">
+      <div class="tab-content" id="form">
+        <label>Nome</label><input type="text" id="nome">
+        <label>Endereço</label><textarea id="endereco"></textarea>
+        <label>Número</label><input type="text" id="numero">
+        <label>Cidade</label><input type="text" id="cidade">
+        <label>Bairro</label><input type="text" id="bairro">
+        <label>Ponto de Ref</label><input type="text" id="ref">
+        <label>WhatsApp</label><input type="text" id="whatsapp">
+        <button id="finalizar">Enviar para WhatsApp</button>
       </div>
-      <img id="qrImage" alt="QR Code gerado">
-      <button id="finalizarBtn">Finalizar Compra</button>
+      <div id="qrContainer"></div>
     </div>
   </div>
-
   <script>
-    const buyButtons = document.querySelectorAll('.buy-button');
-    const modal = document.getElementById('modalOverlay');
-    const closeModal = document.getElementById('closeModal');
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    const qrImage = document.getElementById('qrImage');
-    const finalizarBtn = document.getElementById('finalizarBtn');
-    let currentId, currentPrice;
-
-    // Mapeia preços
-    const prices = {1:25.00,2:30.00,3:37.00,4:20.00,5:30.00};
-
-    buyButtons.forEach(btn => {
-      btn.addEventListener('click', e => {
-        const prod = e.target.closest('.product');
-        currentId = prod.dataset.id;
-        currentPrice = prices[currentId];
-        qrImage.src = '';
-        modal.style.display = 'flex';
-      });
+    const mp = new MercadoPago('APP_USR-0e89b929-3e9d-4bb7-b22c-92954f09ff18',{locale:'pt-BR'});
+    let prefId;
+    document.querySelectorAll('.buy-btn').forEach(btn=>btn.addEventListener('click',async()=>{
+      const prod = btn.closest('.product');
+      const id=prod.dataset.id;
+      // cria preferência
+      const res=await fetch(`/.netlify/functions/generatePreference?product=${id}`);
+      const {id:pid}=await res.json(); prefId=pid;
+      // renderiza PIX
+      mp.checkout({preference:{id:prefId},render:{container:'#mp-checkout',label:'Pix — Pagar agora'}}).open();
+      document.getElementById('overlay').style.display='flex';
+    }));
+    document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{
+      document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active'); document.getElementById(b.dataset.tab).classList.add('active');
+    }));
+    document.getElementById('close').onclick=()=>document.getElementById('overlay').style.display='none';
+    mp.on('approved',()=>{
+      document.getElementById('success').style.display='block';
+      // após aprovado, ir para formulário
+      document.querySelector('[data-tab=form]').click();
     });
-
-    closeModal.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabBtns.forEach(b=>b.classList.remove('active'));
-        tabContents.forEach(c=>c.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
-      });
-    });
-
-    finalizarBtn.addEventListener('click', async () => {
-      // gera QR via função Netlify
-      const res = await fetch(`/.netlify/functions/generateQr?product=${currentId}`);
-      const data = await res.json();
-      qrImage.src = data.qrImage ? `data:image/png;base64,${data.qrImage}` : data.qrCode;
-
-      // montar mensagem WhatsApp
-      let msg = `✨ Pedido: Colete Country – R$ ${currentPrice.toFixed(2)}\n`;
-      if (document.getElementById('entrega').classList.contains('active')) {
-        msg += `📦 Entrega\nNome: ${encodeURIComponent(document.getElementById('entrega-nome').value)}\n`+
-               `Endereço: ${encodeURIComponent(document.getElementById('entrega-endereco').value)}\n`+
-               `Cidade: ${encodeURIComponent(document.getElementById('entrega-cidade').value)}\n`+
-               `Bairro: ${encodeURIComponent(document.getElementById('entrega-bairro').value)}\n`+
-               `Ref: ${encodeURIComponent(document.getElementById('entrega-ref').value)}\n`+
-               `WhatsApp: ${encodeURIComponent(document.getElementById('entrega-whatsapp').value)}\n`;
-      } else {
-        msg += `🏠 Retirada\nWhatsApp: ${encodeURIComponent(document.getElementById('retirada-whatsapp').value)}\n`;
-      }
-      msg += `💳 QR Pix acima.`;
-
-      // abre no WhatsApp
-      window.open(`https://wa.me/5531987961356?text=${encodeURIComponent(msg)}`, '_blank');
+    document.getElementById('finalizar').addEventListener('click',()=>{
+      let msg=`✨ Pedido: Colete Country – R$ ${document.querySelector('.product[data-id]')?.dataset.price}\n`;
+      msg+=`Nome: ${encodeURIComponent(document.getElementById('nome').value)}\n`+
+           `End: ${encodeURIComponent(document.getElementById('endereco').value)}, nº ${encodeURIComponent(document.getElementById('numero').value)}\n`+
+           `Cidade: ${encodeURIComponent(document.getElementById('cidade').value)}\n`+
+           `Bairro: ${encodeURIComponent(document.getElementById('bairro').value)}\n`+
+           `Ref: ${encodeURIComponent(document.getElementById('ref').value)}\n`+
+           `Whats: ${encodeURIComponent(document.getElementById('whatsapp').value)}`;
+      window.open(`https://wa.me/5531987961356?text=${encodeURIComponent(msg)}`,'_blank');
     });
   </script>
 </body>
