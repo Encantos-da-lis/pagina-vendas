@@ -1,54 +1,27 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Encantos da Lis – Loja</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f5f5f5; margin:0; padding:20px; }
-    h1 { text-align: center; }
-    .products { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-    .product { background: #fff; border: 2px solid #ccc; border-radius: 8px; padding: 16px; width:200px; text-align:center; }
-    .product img { width:100%; border-radius: 4px; }
-    .product h2 { margin: 8px 0; }
-    .product p { margin:4px 0; color:#555; }
-    .buy-button { margin-top:8px; background:#FF1493; color:#fff; border:none; padding:8px; border-radius:4px; cursor:pointer; }
-    #qrContainer { text-align:center; margin:20px 0; }
-  </style>
-</head>
-<body>
-  <h1>Coletes Country</h1>
-  <div class="products">
-    <!-- repita para cada imagem/valor -->
-    <div class="product">
-      <img src="imagem1.jpg" alt="Coletes Country">
-      <h2>Coletes Country</h2>
-      <p>"Feltro"</p>
-      <p>Valor: R$ 25,00</p>
-      <button class="buy-button" data-price="25">Comprar R$25</button>
-    </div>
-    <!-- ... -->
-  </div>
-
-  <div id="qrContainer"></div>
-
-  <script>
-    async function showQr(amount) {
-      const qrContainer = document.getElementById("qrContainer");
-      qrContainer.innerHTML = "Gerando QR…";
-      try {
-        const res = await fetch(`/.netlify/functions/generateQr?amount=${amount}`);
-        if (!res.ok) throw new Error((await res.json()).error || res.statusText);
-        const { qr } = await res.json();
-        qrContainer.innerHTML = `<img src="data:image/png;base64,${qr}" alt="QR R$${amount}" />`;
-      } catch (err) {
-        qrContainer.innerHTML = "Erro ao gerar QR: " + err.message;
-      }
-    }
-
-    document.querySelectorAll(".buy-button").forEach(btn =>
-      btn.addEventListener("click", () => showQr(btn.dataset.price))
+// no seu <script> em index.html
+async function gerarQr(price, title) {
+  try {
+    const res = await fetch(
+      `/.netlify/functions/generateQr?price=${price}&title=${encodeURIComponent(title)}`
     );
-  </script>
-</body>
-</html>
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.error || "Erro desconhecido");
+    return json; // { qr_code, qr_base64, init_point }
+  } catch (err) {
+    throw err;
+  }
+}
+
+document.querySelectorAll(".buy-button").forEach(btn => {
+  btn.addEventListener("click", async () => {
+    const price = btn.dataset.price;
+    const title = btn.dataset.title;
+    try {
+      const { qr_base64 } = await gerarQr(price, title);
+      document.getElementById("qrImage").src = `data:image/png;base64,${qr_base64}`;
+      document.getElementById("success").textContent = "";
+    } catch (e) {
+      document.getElementById("success").textContent = `Erro ao gerar QR: ${e.message}`;
+    }
+  });
+});

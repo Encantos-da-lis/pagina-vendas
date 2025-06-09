@@ -1,3 +1,11 @@
 [build]
+  # publica o index.html na raiz
   publish = "."
+  # aponta para onde estão suas Netlify Functions
   functions = "netlify/functions"
+
+[dev]
+  # porta onde seu HTML/CSS/JS será servido
+  port = 8888
+  # porta onde as Functions vão rodar
+  functionsPort = 3999
