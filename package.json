@@ -1,5 +1,7 @@
 {
+  "name": "pagina-vendas",
+  "version": "1.0.0",
   "dependencies": {
-    "mercadopago": "^2.7.0"
+    "mercadopago": "^2.3.3"
   }
 }
