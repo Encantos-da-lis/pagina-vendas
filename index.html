@@ -19,6 +19,7 @@
 <body>
   <h1>Coletes Country</h1>
   <div class="products">
+    <!-- repita para cada imagem/valor -->
     <div class="product">
       <img src="imagem1.jpg" alt="Coletes Country">
       <h2>Coletes Country</h2>
@@ -26,34 +27,7 @@
       <p>Valor: R$ 25,00</p>
       <button class="buy-button" data-price="25">Comprar R$25</button>
     </div>
-    <div class="product">
-      <img src="imagem2.jpg" alt="Coletes Country">
-      <h2>Coletes Country</h2>
-      <p>"Feltro"</p>
-      <p>Valor: R$ 30,00</p>
-      <button class="buy-button" data-price="30">Comprar R$30</button>
-    </div>
-    <div class="product">
-      <img src="imagem3.jpg" alt="Coletes Country">
-      <h2>Coletes Country</h2>
-      <p>"Feltro"</p>
-      <p>Valor: R$ 37,00</p>
-      <button class="buy-button" data-price="37">Comprar R$37</button>
-    </div>
-    <div class="product">
-      <img src="imagem4.jpg" alt="Coletes Country">
-      <h2>Coletes Country</h2>
-      <p>"Feltro"</p>
-      <p>Valor: R$ 20,00</p>
-      <button class="buy-button" data-price="20">Comprar R$20</button>
-    </div>
-    <div class="product">
-      <img src="imagem5.jpg" alt="Coletes Country">
-      <h2>Coletes Country</h2>
-      <p>"Feltro"</p>
-      <p>Valor: R$ 30,00</p>
-      <button class="buy-button" data-price="30">Comprar R$30</button>
-    </div>
+    <!-- ... -->
   </div>
 
   <div id="qrContainer"></div>
@@ -64,13 +38,10 @@
       qrContainer.innerHTML = "Gerando QR…";
       try {
         const res = await fetch(`/.netlify/functions/generateQr?amount=${amount}`);
-        if (!res.ok) {
-          throw new Error(await res.text());
-        }
+        if (!res.ok) throw new Error((await res.json()).error || res.statusText);
         const { qr } = await res.json();
         qrContainer.innerHTML = `<img src="data:image/png;base64,${qr}" alt="QR R$${amount}" />`;
       } catch (err) {
-        console.error(err);
         qrContainer.innerHTML = "Erro ao gerar QR: " + err.message;
       }
     }
