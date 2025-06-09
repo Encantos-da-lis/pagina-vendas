@@ -1,174 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-<<<<<<< HEAD
-  <title>Encantos da Lis – Colete Country</title>
-=======
-  <title>Encantos da Lis – Pagamento PIX</title>
->>>>>>> 3b9a6b1d451d9c8b7b6c25320e50f90806124d06
-  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <meta charset="UTF-8" />
+  <title>Encantos da Lis – Loja</title>
   <style>
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:Arial,sans-serif;background:#FF69B4;}
-    .page-border{border:8px solid #FF1493;max-width:1000px;margin:20px auto;background:#fff;}
-    .sobre{background:#C71585;color:#fff;text-align:center;padding:20px;}
-    .sobre img{width:150px;border-radius:50%;margin-bottom:15px;}
-    .sobre h1{font-size:24px;margin-bottom:10px;}
-    .sobre p{font-size:14px;line-height:1.5;max-width:600px;margin:auto;}
-    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;padding:20px;}
-    .product{background:#fff;border:2px solid #C71585;border-radius:8px;display:flex;flex-direction:column;}
-    .product img{width:100%;object-fit:cover;}
-    .info{padding:15px;flex:1;font-size:14px;}
-    .info strong{display:block;font-size:16px;margin-bottom:5px;}
-    .info em{display:block;font-style:italic;color:#555;margin-bottom:10px;}
-    .info .details{margin-bottom:10px;}
-    .buy-btn{background:#FF1493;color:#fff;text-align:center;padding:10px;cursor:pointer;text-decoration:none;font-weight:bold;border-bottom-left-radius:8px;border-bottom-right-radius:8px;}
-    .buy-btn:hover{background:#e01381;}
-<<<<<<< HEAD
-=======
-    /* Modal */
->>>>>>> 3b9a6b1d451d9c8b7b6c25320e50f90806124d06
-    .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;z-index:1000;}
-    .modal{background:#fff;border-radius:8px;max-width:400px;width:90%;overflow:hidden;}
-    .modal-header{background:#C71585;color:#fff;padding:10px;position:relative;text-align:center;}
-    .modal-header .close{position:absolute;top:8px;right:12px;cursor:pointer;font-size:20px;}
-    .tabs{display:flex;border-bottom:1px solid #ddd;}
-    .tab-btn{flex:1;padding:10px;text-align:center;cursor:pointer;background:#f0f0f0;}
-    .tab-btn.active{background:#fff;font-weight:bold;border-bottom:2px solid #C71585;}
-    .tab-content{display:none;padding:15px;}
-    .tab-content.active{display:block;}
-    .tab-content label{display:block;margin-bottom:5px;font-weight:bold;}
-    .tab-content input,.tab-content textarea{width:100%;margin-bottom:10px;padding:8px;border:1px solid #ccc;border-radius:4px;}
-<<<<<<< HEAD
-    #mp-checkout{margin:10px auto;}
-    #success{display:none;color:green;text-align:center;padding:10px;}
-    #finalizar{background:#FF1493;color:#fff;width:100%;padding:10px;border:none;cursor:pointer;font-size:16px;margin-top:10px;}
-=======
-    #qrContainer{text-align:center;padding:15px;}
-    #success{display:none;color:green;text-align:center;padding:10px;}
-    #finalizar{background:#FF1493;color:#fff;width:100%;padding:10px;border:none;cursor:pointer;font-size:16px;}
->>>>>>> 3b9a6b1d451d9c8b7b6c25320e50f90806124d06
-    #finalizar:hover{background:#e01381;}
+    /* Só exemplo simplificado */
+    .products { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .product { border: 1px solid #ccc; padding: 1rem; width: 200px; }
+    .product img { width: 100%; }
+    .buy-button { display:block; margin-top:0.5rem; padding:0.5rem; background:#28a; color:#fff; text-align:center; cursor:pointer; }
+    #overlay { position: fixed; inset:0; background:rgba(0,0,0,0.6); display:none; justify-content:center; align-items:center; }
+    .modal { background:#fff; padding:1rem; border-radius:4px; width:300px; }
+    .tabs { display:flex; gap:1rem; margin-bottom:1rem; }
+    .tabs button { flex:1; padding:0.5rem; cursor:pointer; }
+    .tab-content { display:none; }
+    .tab-content.active { display:block; }
+    #qrContainer img { width:100%; }
   </style>
 </head>
 <body>
-  <div class="page-border">
-    <div class="sobre">
-      <img src="eliza.jpg" alt="Eliza Gabriela">
-      <h1>Sobre Mim</h1>
-<<<<<<< HEAD
-      <p>Eliza Gabriela Laceira<br>Sou empreendedora de laços há 1 ano...<em>Sempre será um prazer atender você!</em></p>
-    </div>
-    <div class="products">
-      <!-- 5 produtos -->
-      <div class="product" data-id="1" data-price="25.00"><img src="imagem1.jpg"><div class="info"><strong>Colete Country</strong><em>"feltro"</em><div class="details">Tamanho: P<br>36×42 cm</div><div class="details">Valor: R$ 25,00</div></div><div class="buy-btn">Comprar</div></div>
-      <div class="product" data-id="2" data-price="30.00"><img src="imagem2.jpg"><div class="info"><strong>Colete Country</strong><em>"feltro"</em><div class="details">Tamanho: M<br>42×48 cm</div><div class="details">Valor: R$ 30,00</div></div><div class="buy-btn">Comprar</div></div>
-      <div class="product" data-id="3" data-price="37.00"><img src="imagem3.jpg"><div class="info"><strong>Colete Country</strong><em>"feltro"</em><div class="details">Tamanho: G<br>46×56 cm</div><div class="details">Valor: R$ 37,00</div></div><div class="buy-btn">Comprar</div></div>
-      <div class="product" data-id="4" data-price="20.00"><img src="imagem4.jpg"><div class="info"><strong>Colete Country</strong><em>"feltro"</em><div class="details">Tamanho: PP<br>29×32 cm</div><div class="details">Valor: R$ 20,00</div></div><div class="buy-btn">Comprar</div></div>
-      <div class="product" data-id="5" data-price="30.00"><img src="imagem5.jpg"><div class="info"><strong>Colete Country</strong><em>"feltro"</em><div class="details">Tamanho: M<br>38×41 cm</div><div class="details">Valor: R$ 30,00</div></div><div class="buy-btn">Comprar</div></div>
-    </div>
+  <h1>Encantos da Lis – Colete Country</h1>
+  <div class="products">
+    <!-- 5 produtos -->
+    <template id="tpl-product">
+      <div class="product">
+        <img src="" alt="">
+        <div><strong class="name"></strong><br><em>Material: Feltro</em></div>
+        <div>Valor: R$ <span class="price"></span></div>
+        <div class="buy-button">Comprar</div>
+      </div>
+    </template>
   </div>
 
   <!-- Modal -->
-=======
-      <p>Eliza Gabriela Laceira<br>
-      Sou empreendedora de laços há 1 ano, comecei do nada para entregar tudo para as mamães que amam deixar sua princesa ainda mais linda.<br>
-      Tenho 25 anos e sou mãe do João Pedro e da Anna Lis.<br>
-      Comecei com minha princesa Lis para realizar o sonho de ter uma princesa e fazer da minha paixão minha fonte de renda.<br>
-      <em>Sempre será um prazer atender você!</em></p>
-    </div>
-    <div class="products">
-      <!-- repetir para cada produto -->
-      <div class="product" data-id="1" data-price="25.00">
-        <img src="imagem1.jpg" alt="Colete Country">
-        <div class="info">
-          <strong>Colete Country</strong>
-          <em>"feltro"</em>
-          <div class="details">Tamanho: P<br>36 cm · 42 cm</div>
-          <div class="details">Valor: R$ 25,00</div>
-        </div>
-        <div class="buy-btn">Comprar</div>
-      </div>
-      <!-- ... imagem2..5 similar com preços 30,37,20,30 -->
-    </div>
-  </div>
->>>>>>> 3b9a6b1d451d9c8b7b6c25320e50f90806124d06
-  <div class="overlay" id="overlay">
+  <div id="overlay">
     <div class="modal">
-      <div class="modal-header">Pagamento PIX <span class="close" id="close">×</span></div>
       <div class="tabs">
-        <div class="tab-btn active" data-tab="payment">Pagamento</div>
-        <div class="tab-btn" data-tab="form">Formulário</div>
+        <button data-tab="payment">Pagamento</button>
+        <button data-tab="form">Dados</button>
       </div>
-      <div class="tab-content active" id="payment">
-        <div id="mp-checkout"></div>
-<<<<<<< HEAD
-        <div id="success">🎉 Pagamento concluído!</div>
+      <div id="payment" class="tab-content active">
+        <div id="qrContainer">Gerando QR…</div>
+        <div id="success" style="display:none;">🎉 Pagamento concluído!</div>
       </div>
-      <div class="tab-content" id="form">
-        <label>Nome</label><input id="nome"><label>Endereço</label><textarea id="endereco"></textarea><label>Número</label><input id="numero"><label>Cidade</label><input id="cidade"><label>Bairro</label><input id="bairro"><label>Ponto Ref</label><input id="ref"><label>WhatsApp</label><input id="whatsapp"><button id="finalizar">Enviar para WhatsApp</button>
-      </div>
-=======
-        <div id="success">🎉 Pagamento concluído com sucesso!</div>
-      </div>
-      <div class="tab-content" id="form">
-        <label>Nome</label><input type="text" id="nome">
-        <label>Endereço</label><textarea id="endereco"></textarea>
-        <label>Número</label><input type="text" id="numero">
-        <label>Cidade</label><input type="text" id="cidade">
-        <label>Bairro</label><input type="text" id="bairro">
-        <label>Ponto de Ref</label><input type="text" id="ref">
-        <label>WhatsApp</label><input type="text" id="whatsapp">
+      <div id="form" class="tab-content">
+        <label>Nome<input type="text" id="nome"></label><br>
+        <label>Endereço<textarea id="endereco"></textarea></label><br>
+        <label>Número<input type="text" id="numero"></label><br>
+        <label>Cidade<input type="text" id="cidade"></label><br>
+        <label>Bairro<input type="text" id="bairro"></label><br>
+        <label>Ponto de Ref<input type="text" id="ref"></label><br>
+        <label>WhatsApp<input type="text" id="whatsapp"></label><br>
         <button id="finalizar">Enviar para WhatsApp</button>
       </div>
-      <div id="qrContainer"></div>
->>>>>>> 3b9a6b1d451d9c8b7b6c25320e50f90806124d06
+      <button id="close">Fechar</button>
     </div>
   </div>
-  <script>
-    const mp = new MercadoPago('APP_USR-0e89b929-3e9d-4bb7-b22c-92954f09ff18',{locale:'pt-BR'});
-    let prefId;
-<<<<<<< HEAD
 
-    document.querySelectorAll('.buy-btn').forEach(btn=>{
-      btn.onclick=async()=>{
-        const id = btn.closest('.product').dataset.id;
-        const res = await fetch(`/.netlify/functions/generatePreference?product=${id}`);
-        const { id:pid } = await res.json();
-        mp.checkout({ preference:{ id:pid }, render:{ container:'#mp-checkout', label:'Pagar com Pix' } }).open();
-        document.getElementById('overlay').style.display='flex';
-      };
+  <script>
+    // produtos e preços
+    const produtos = [
+      { id:1, name:'Colete Country', price:25, img:'imagem1.jpg' },
+      { id:2, name:'Colete Country', price:30, img:'imagem2.jpg' },
+      { id:3, name:'Colete Country', price:37, img:'imagem3.jpg' },
+      { id:4, name:'Colete Country', price:20, img:'imagem4.jpg' },
+      { id:5, name:'Colete Country', price:30, img:'imagem5.jpg' },
+    ];
+
+    const tpl = document.getElementById('tpl-product');
+    const container = document.querySelector('.products');
+
+    produtos.forEach(p=>{
+      const clone = tpl.content.cloneNode(true);
+      clone.querySelector('img').src = p.img;
+      clone.querySelector('img').alt = `${p.name} R$${p.price}`;
+      clone.querySelector('.name').textContent = p.name;
+      clone.querySelector('.price').textContent = p.price.toFixed(2);
+      const btn = clone.querySelector('.buy-button');
+      btn.addEventListener('click', ()=>openModal(p));
+      container.appendChild(clone);
     });
 
-    document.querySelectorAll('.tab-btn').forEach(b=>{
-      b.onclick=()=>{
-        document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+    // modal e abas
+    const overlay = document.getElementById('overlay');
+    const tabs = document.querySelectorAll('.tabs button');
+    tabs.forEach(b=>{
+      b.onclick = ()=>{
+        tabs.forEach(x=>x.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
         b.classList.add('active');
         document.getElementById(b.dataset.tab).classList.add('active');
-      };
+      }
     });
+    document.getElementById('close').onclick = ()=> overlay.style.display='none';
 
-    document.getElementById('close').onclick = ()=> {
-      document.getElementById('overlay').style.display='none';
+    let selectedProduct = null;
+    async function openModal(prod) {
+      selectedProduct = prod;
+      overlay.style.display = 'flex';
+      document.querySelector('[data-tab="payment"]').click();
+
+      // gera QR chamando sua Function Netlify
+      const res = await fetch(`/.netlify/functions/generateQr?amount=${prod.price}`);
+      const { qrcode } = await res.json();
+      document.getElementById('qrContainer').innerHTML = `<img src="${qrcode}" alt="QR de R$${prod.price}"/>`;
+      
+      // aguarda confirmação simulada: aqui você detecta via webhook ou polling
+      // para demo, vamos simular 3s depois:
       document.getElementById('success').style.display='none';
+      setTimeout(()=>{
+        document.getElementById('success').style.display='block';
+        document.querySelector('[data-tab="form"]').click();
+      }, 3000);
+    }
+
+    // ao enviar pedido
+    document.getElementById('finalizar').onclick = ()=>{
+      let msg = `📦 Pedido – ${selectedProduct.name}\nR$${selectedProduct.price.toFixed(2)}\n`;
+      msg += `Nome: ${nome.value}\nEndereço: ${endereco.value}, nº ${numero.value}\n`;
+      msg += `Cidade: ${cidade.value}\nBairro: ${bairro.value}\nRef: ${ref.value}\n`;
+      msg += `WhatsApp: ${whatsapp.value}`;
+
+      const waUrl = `https://wa.me/5531987961356?text=${encodeURIComponent(msg)}`;
+      window.open(waUrl, '_blank');
+      overlay.style.display='none';
     };
-
-    mp.on('approved', ()=> {
-      document.getElementById('success').style.display='block';
-      document.querySelector('[data-tab=form]').click();
-    });
-
-    document.getElementById('finalizar').onclick = ()=> {
-      let msg = `✨ Pedido: Colete Country – R$ ${document.querySelector('.product[data-id]').dataset.price}\\n`;
-      msg += `Nome: ${encodeURIComponent(document.getElementById('nome').value)}\\n` +
-             `Endereço: ${encodeURIComponent(document.getElementById('endereco').value)}, nº ${encodeURIComponent(document.getElementById('numero').value)}\\n` +
-             `Cidade: ${encodeURIComponent(document.getElementById('cidade').value)}\\n` +
-             `Bairro: ${encodeURIComponent(document.getElementById('bairro').value)}\\n` +
-             `Ref: ${encodeURIComponent(document.getElementById('ref').value)}\\n` +
-             `Whats: ${encodeURIComponent(document.getElementById('whatsapp').value)}`;
-      window.open(`https://wa.me/5531987961356?text=${encodeURIComponent(msg)}`,'_blank');
-    });
-=======
- 
+  </script>
+</body>
+</html>
