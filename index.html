@@ -2,7 +2,11 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+<<<<<<< HEAD
   <title>Encantos da Lis – Colete Country</title>
+=======
+  <title>Encantos da Lis – Pagamento PIX</title>
+>>>>>>> 3b9a6b1d451d9c8b7b6c25320e50f90806124d06
   <script src="https://sdk.mercadopago.com/js/v2"></script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0;}
@@ -21,6 +25,10 @@
     .info .details{margin-bottom:10px;}
     .buy-btn{background:#FF1493;color:#fff;text-align:center;padding:10px;cursor:pointer;text-decoration:none;font-weight:bold;border-bottom-left-radius:8px;border-bottom-right-radius:8px;}
     .buy-btn:hover{background:#e01381;}
+<<<<<<< HEAD
+=======
+    /* Modal */
+>>>>>>> 3b9a6b1d451d9c8b7b6c25320e50f90806124d06
     .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;z-index:1000;}
     .modal{background:#fff;border-radius:8px;max-width:400px;width:90%;overflow:hidden;}
     .modal-header{background:#C71585;color:#fff;padding:10px;position:relative;text-align:center;}
@@ -32,9 +40,15 @@
     .tab-content.active{display:block;}
     .tab-content label{display:block;margin-bottom:5px;font-weight:bold;}
     .tab-content input,.tab-content textarea{width:100%;margin-bottom:10px;padding:8px;border:1px solid #ccc;border-radius:4px;}
+<<<<<<< HEAD
     #mp-checkout{margin:10px auto;}
     #success{display:none;color:green;text-align:center;padding:10px;}
     #finalizar{background:#FF1493;color:#fff;width:100%;padding:10px;border:none;cursor:pointer;font-size:16px;margin-top:10px;}
+=======
+    #qrContainer{text-align:center;padding:15px;}
+    #success{display:none;color:green;text-align:center;padding:10px;}
+    #finalizar{background:#FF1493;color:#fff;width:100%;padding:10px;border:none;cursor:pointer;font-size:16px;}
+>>>>>>> 3b9a6b1d451d9c8b7b6c25320e50f90806124d06
     #finalizar:hover{background:#e01381;}
   </style>
 </head>
@@ -43,6 +57,7 @@
     <div class="sobre">
       <img src="eliza.jpg" alt="Eliza Gabriela">
       <h1>Sobre Mim</h1>
+<<<<<<< HEAD
       <p>Eliza Gabriela Laceira<br>Sou empreendedora de laços há 1 ano...<em>Sempre será um prazer atender você!</em></p>
     </div>
     <div class="products">
@@ -56,6 +71,29 @@
   </div>
 
   <!-- Modal -->
+=======
+      <p>Eliza Gabriela Laceira<br>
+      Sou empreendedora de laços há 1 ano, comecei do nada para entregar tudo para as mamães que amam deixar sua princesa ainda mais linda.<br>
+      Tenho 25 anos e sou mãe do João Pedro e da Anna Lis.<br>
+      Comecei com minha princesa Lis para realizar o sonho de ter uma princesa e fazer da minha paixão minha fonte de renda.<br>
+      <em>Sempre será um prazer atender você!</em></p>
+    </div>
+    <div class="products">
+      <!-- repetir para cada produto -->
+      <div class="product" data-id="1" data-price="25.00">
+        <img src="imagem1.jpg" alt="Colete Country">
+        <div class="info">
+          <strong>Colete Country</strong>
+          <em>"feltro"</em>
+          <div class="details">Tamanho: P<br>36 cm · 42 cm</div>
+          <div class="details">Valor: R$ 25,00</div>
+        </div>
+        <div class="buy-btn">Comprar</div>
+      </div>
+      <!-- ... imagem2..5 similar com preços 30,37,20,30 -->
+    </div>
+  </div>
+>>>>>>> 3b9a6b1d451d9c8b7b6c25320e50f90806124d06
   <div class="overlay" id="overlay">
     <div class="modal">
       <div class="modal-header">Pagamento PIX <span class="close" id="close">×</span></div>
@@ -65,17 +103,33 @@
       </div>
       <div class="tab-content active" id="payment">
         <div id="mp-checkout"></div>
+<<<<<<< HEAD
         <div id="success">🎉 Pagamento concluído!</div>
       </div>
       <div class="tab-content" id="form">
         <label>Nome</label><input id="nome"><label>Endereço</label><textarea id="endereco"></textarea><label>Número</label><input id="numero"><label>Cidade</label><input id="cidade"><label>Bairro</label><input id="bairro"><label>Ponto Ref</label><input id="ref"><label>WhatsApp</label><input id="whatsapp"><button id="finalizar">Enviar para WhatsApp</button>
       </div>
+=======
+        <div id="success">🎉 Pagamento concluído com sucesso!</div>
+      </div>
+      <div class="tab-content" id="form">
+        <label>Nome</label><input type="text" id="nome">
+        <label>Endereço</label><textarea id="endereco"></textarea>
+        <label>Número</label><input type="text" id="numero">
+        <label>Cidade</label><input type="text" id="cidade">
+        <label>Bairro</label><input type="text" id="bairro">
+        <label>Ponto de Ref</label><input type="text" id="ref">
+        <label>WhatsApp</label><input type="text" id="whatsapp">
+        <button id="finalizar">Enviar para WhatsApp</button>
+      </div>
+      <div id="qrContainer"></div>
+>>>>>>> 3b9a6b1d451d9c8b7b6c25320e50f90806124d06
     </div>
   </div>
-
   <script>
     const mp = new MercadoPago('APP_USR-0e89b929-3e9d-4bb7-b22c-92954f09ff18',{locale:'pt-BR'});
     let prefId;
+<<<<<<< HEAD
 
     document.querySelectorAll('.buy-btn').forEach(btn=>{
       btn.onclick=async()=>{
@@ -116,6 +170,5 @@
              `Whats: ${encodeURIComponent(document.getElementById('whatsapp').value)}`;
       window.open(`https://wa.me/5531987961356?text=${encodeURIComponent(msg)}`,'_blank');
     });
-  </script>
-</body>
-</html>
+=======
+ 
