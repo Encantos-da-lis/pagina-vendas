@@ -1,27 +1,31 @@
-// no seu <script> em index.html
-async function gerarQr(price, title) {
-  try {
-    const res = await fetch(
-      `/.netlify/functions/generateQr?price=${price}&title=${encodeURIComponent(title)}`
-    );
-    const json = await res.json();
-    if (!res.ok) throw new Error(json.error || "Erro desconhecido");
-    return json; // { qr_code, qr_base64, init_point }
-  } catch (err) {
-    throw err;
-  }
-}
-
-document.querySelectorAll(".buy-button").forEach(btn => {
-  btn.addEventListener("click", async () => {
-    const price = btn.dataset.price;
-    const title = btn.dataset.title;
-    try {
-      const { qr_base64 } = await gerarQr(price, title);
-      document.getElementById("qrImage").src = `data:image/png;base64,${qr_base64}`;
-      document.getElementById("success").textContent = "";
-    } catch (e) {
-      document.getElementById("success").textContent = `Erro ao gerar QR: ${e.message}`;
-    }
-  });
-});
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Vendas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="product-item" data-price="20" data-title="Produto VIP">
+      <h3>Produto VIP - R$20</h3>
+      <button class="buy-button">Pagar</button>
+    </div>
+    <div id="qr-section">
+      <img id="qrImage" alt="QR Code">
+      <button id="confirm-payment" style="display:none;">Confirmar Pagamento</button>
+    </div>
+    <div id="payment-form" style="display:none;">
+      <h2>Preencha seus dados</h2>
+      <form id="user-data-form">
+        <input type="text" id="name" placeholder="Nome completo" required><br>
+        <input type="email" id="email" placeholder="Email" required><br>
+        <input type="text" id="phone" placeholder="Telefone" required><br>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
