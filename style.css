@@ -1,0 +1,30 @@
+
+body {
+  background-color: #ffb6c1; /* rosa claro */
+  margin: 0;
+  padding: 20px;
+  border: 5px solid #ff1493; /* rosa choque */
+  box-sizing: border-box;
+}
+.product-item {
+  border: 2px solid #ff1493;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+}
+#qr-section, #payment-form {
+  margin-top: 20px;
+}
+#payment-form {
+  display: none;
+  background: #fff;
+  padding: 20px;
+  border: 3px solid #ff1493;
+  border-radius: 8px;
+}
+#payment-form input {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
