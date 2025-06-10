@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Página de Vendas</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div class="container">
-    <div class="product-item" data-price="20" data-title="Produto VIP">
-      <h3>Produto VIP - R$20</h3>
+  <!-- cabeçalho com Eliza -->
+  <header class="header">
+    <img src="eliza.jpg" alt="Eliza" class="header-image"/>
+    <p class="header-text">Bem-vinda ao nosso VIP Pack! Escolha seu produto abaixo 👇</p>
+  </header>
+
+  <main class="container">
+    <!-- Exemplo de produto 1 -->
+    <div class="product-item" data-price="20" data-title="Pack 1">
+      <img src="imagem1.jpg" alt="Pack 1" class="product-img"/>
+      <h3>Pack 1 – R$20</h3>
       <button class="buy-button">Pagar</button>
     </div>
-    <div id="qr-section">
-      <img id="qrImage" alt="QR Code">
-      <button id="confirm-payment" style="display:none;">Confirmar Pagamento</button>
+
+    <!-- Produto 2 -->
+    <div class="product-item" data-price="20" data-title="Pack 2">
+      <img src="imagem2.jpg" alt="Pack 2" class="product-img"/>
+      <h3>Pack 2 – R$20</h3>
+      <button class="buy-button">Pagar</button>
     </div>
-    <div id="payment-form" style="display:none;">
-      <h2>Preencha seus dados</h2>
-      <form id="user-data-form">
-        <input type="text" id="name" placeholder="Nome completo" required><br>
-        <input type="email" id="email" placeholder="Email" required><br>
-        <input type="text" id="phone" placeholder="Telefone" required><br>
-        <button type="submit">Enviar</button>
-      </form>
-    </div>
-  </div>
+
+    <!-- Repita para os demais produtos (imagem3.jpg, imagem4.jpg, etc.) -->
+  </main>
+
+  <!-- Seção de QR e formulário idem antes -->
+  <div id="qr-section">…</div>
+  <div id="payment-form">…</div>
+
+  <!-- seu script de Pix + WhatsApp -->
   <script src="app.js"></script>
 </body>
 </html>
